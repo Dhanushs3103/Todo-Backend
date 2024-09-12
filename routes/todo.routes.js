@@ -3,13 +3,12 @@ const express = require('express');
 const router = express.Router();
 const TodoModel = require('../model/Todo.model');
 const UserModel = require('../model/User.model');
-const authMiddleware = require('../middlewares/auth.middleware');
 
 //Parent Router 
 let todoRouter = router;
 
 //Endpoint for getting all todos
-todoRouter.get('/getTodos', [authMiddleware], async (req, res) => {   
+todoRouter.get('/getTodos', async (req, res) => {   
     try { 
         let todos = await TodoModel.find();
         if(todos.length == 0) {
@@ -22,7 +21,7 @@ todoRouter.get('/getTodos', [authMiddleware], async (req, res) => {
 });
 
 //Endpoint for the todo creation
-todoRouter.post("/addTodo", [authMiddleware], async (req, res) => {
+todoRouter.post("/addTodo", async (req, res) => {
   let { title, description, status } = req.body;
   let { user_id } = req.body;
   if (!title || !description) {
@@ -50,7 +49,7 @@ todoRouter.post("/addTodo", [authMiddleware], async (req, res) => {
 });
 
 //Endpoint for the todo updation
-todoRouter.patch("/updateTodo/:id", [authMiddleware], async (req, res) => {
+todoRouter.patch("/updateTodo/:id", async (req, res) => {
   let { id } = req.params;
   let { title, description, status } = req.body;
   try {
@@ -70,7 +69,7 @@ todoRouter.patch("/updateTodo/:id", [authMiddleware], async (req, res) => {
 });
 
 //Endpoint for the todo deletion
-todoRouter.delete("/deleteTodo/:id", [authMiddleware], async (req, res) => {
+todoRouter.delete("/deleteTodo/:id",async (req, res) => {
   let { id } = req.params;
   try {
     let todo = await TodoModel.findById(id);
