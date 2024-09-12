@@ -13,7 +13,6 @@ let userSchema = new mongoose.Schema(
       trim: true,
       enum: ["male", "female"],
     },
-    todosCreated: [{ type: mongoose.Schema.Types.ObjectId, ref: "Todo" , default: [] }],
   },
   { timestamps: true, versionKey: false }
 );

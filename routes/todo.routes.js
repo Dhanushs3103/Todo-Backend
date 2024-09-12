@@ -23,7 +23,6 @@ todoRouter.get('/getTodos', async (req, res) => {
 //Endpoint for the todo creation
 todoRouter.post("/addTodo", async (req, res) => {
   let { title, description, status } = req.body;
-  let { user_id } = req.body;
   if (!title || !description) {
     return res
       .status(400)
@@ -39,9 +38,6 @@ todoRouter.post("/addTodo", async (req, res) => {
       user:user._id
     });
     await todo.save();
-    //adding this data to the user
-    user.todosCreated.push(todo._id);
-    await user.save();
     res.status(201).json({ message: "Todo created successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
