@@ -27,7 +27,7 @@ authRouter.post("/register", async (req, res) => {
   try {
     let user = await UserModel.findOne({ email, userName });
     //checking if the user already exists
-    if (user) return res.status(400).json({ message: "User already exists" });
+    if (user) return res.json({ message: "User already exists" });
     //registering the new user
     let newUser = await UserModel.create({
       userName,
@@ -50,15 +50,15 @@ authRouter.post("/login", async (req, res) => {
     //checking if the user exists
     let user = await UserModel.findOne({ email });
     //checking if the user exists
-    if (!user) return res.status(400).json({ message: "User not found" });
+    if (!user) return res.json({ message: "User not found" });
     //checking if the password is correct
     let isMatch = await bcrypt.compare(password, user.password);
     //checking if the password is correct
-    if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
+    if (!isMatch) return res.json({ message: "Invalid credentials" });
     //sending the response;
-    res.status(200).json({ message: "Login successful"});
+    res.json({ message: "Login successful"});
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message });
   }
 });
 

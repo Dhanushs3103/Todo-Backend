@@ -16,7 +16,7 @@ todoRouter.get('/getTodos', async (req, res) => {
         }
         res.status(200).json({message:"All todos fetched successfully", data:todos});
     } catch (error) {
-        res.status(500).json({message:error.message});
+        res.json({message:error.message});
     }
 });
 
@@ -40,7 +40,7 @@ todoRouter.post("/addTodo", async (req, res) => {
     await todo.save();
     res.status(201).json({ message: "Todo created successfully" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message });
   }
 });
 
@@ -51,7 +51,7 @@ todoRouter.patch("/updateTodo/:id", async (req, res) => {
   try {
     let todo = await TodoModel.findById(id);
     if (!todo) {
-      res.status(404).json({ message: "Todo not found" });
+      res.json({ message: "Todo not found" });
     } else {
       if (title) todo.title = title;
       if (description) todo.description = description;
@@ -60,7 +60,7 @@ todoRouter.patch("/updateTodo/:id", async (req, res) => {
       res.status(201).json({ message: "Todo updated successfully" });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message });
   }
 });
 
@@ -70,13 +70,13 @@ todoRouter.delete("/deleteTodo/:id",async (req, res) => {
   try {
     let todo = await TodoModel.findById(id);
     if (!todo) {
-      res.status(404).json({ message: "Todo not found" });
+      res.json({ message: "Todo not found" });
     } else {
       await TodoModel.findByIdAndDelete(id);
       res.status(200).json({ message: "Todo deleted successfully" });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ message: error.message });
   }
 });
 
