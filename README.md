@@ -3,7 +3,7 @@
 Welcome to the backend of the **Todoiest** full-stack todo application! This backend API handles all the server-side logic, including user authentication and todo management. It is built using Node.js, Express, and MongoDB.
 
 ## 🌐 Live Server
-You can access the live server here: [Todo Backend](https://todo-backend-zf7n.onrender.com)
+You can access the live server here: [Todo Backend](https://todo-backend-hpmy.onrender.com)
 
 ## 📂 API Endpoints
 
