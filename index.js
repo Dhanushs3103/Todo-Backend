@@ -9,7 +9,6 @@ const morgan = require("morgan");
 let PORT = process.env.PORT || 3000;
 let connection = require('./config/db.config.js');
 let authRouter = require('./routes/auth.routes.js');
-let todoRouter = require('./routes/todo.routes.js');
 
 
 //initializing express
@@ -26,7 +25,6 @@ app.use(
 );
 app.use(express.json()); //for parsing req.body
 app.use("/api/auth",authRouter); //parent route
-app.use("/api/todo",todoRouter); //parent route
 app.use(morgan("combined"))
 
 

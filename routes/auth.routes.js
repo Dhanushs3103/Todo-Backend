@@ -4,7 +4,6 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 
 //Local imports
-const TodoModel = require("../model/Todo.model");
 const UserModel = require("../model/User.model");
 const SLAT_ROUNDS = Number(process.env.SLAT_ROUNDS);
 
